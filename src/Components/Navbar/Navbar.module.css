@@ -1,0 +1,18 @@
+.navbar{
+  margin: 0% 8% 0% 12%;
+  display: flex;  
+  height: 64px;
+}
+
+.title {
+  font-family: "Dela Gothic One", cursive;
+  line-height: 64px;
+}
+
+
+.links a {
+  padding: 0px 20px;
+  line-height: 64px;
+  text-decoration: none;
+  color: #333;
+}
