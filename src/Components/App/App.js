@@ -1,10 +1,8 @@
 import classes from './App.module.css';
-import Navbar from '../../Components/Navbar/Navbar';
-import Home from '../../Components/Home/Home';
+import Navbar from '../Navbar/Navbar';
+import Home from '../Home/Home';
 
-function App() {
-
-  
+function App() {  
   return (
    <div className="App">
      <Navbar/>
