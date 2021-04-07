@@ -1,6 +1,6 @@
 import classes from './Home.module.css';
-import { useState } from 'react';
-import { PostPreview } from '../Utilities/Utilities';
+import { useState, useEffect } from 'react';
+import PostPreview from '../PostPreview/PostPreview';
 
 
 function Home(){
@@ -10,16 +10,23 @@ function Home(){
     {title: "Welcome party!", body: "Lorem ipsum...", author: "Charles V", id: 2},
     {title: "Web dev top tips", body: "Lorem ipsum...", author: "Francis I", id: 3},
   ]);
+    
+  const removePostHandler = (id)=>{
+    setPosts(posts.filter(post => post.id !== id));
+  }
+
+  useEffect(()=>{
+    console.log("use effect ran");
+  }, []);
 
   return (
     <div className="section-container">
-      {posts.map(post => <PostPreview
-        key = {post.id}
-        title = {post.title}
-        body = {post.body}
-        author = {post.author}
-      ></PostPreview>
-      )}     
+      { posts.map(post => <PostPreview 
+        post={post} 
+        key={post.id} 
+        removeHandler={removePostHandler} 
+        />)
+      } 
     </div>
   );
 }
