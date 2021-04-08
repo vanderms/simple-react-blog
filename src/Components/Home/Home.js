@@ -5,23 +5,40 @@ import PostPreview from '../PostPreview/PostPreview';
 
 function Home(){
 
-  const [posts, setPosts] = useState([
-    {title: "My new website", body: "Lorem ipsum...", author: "Henry VIII", id: 1},
-    {title: "Welcome party!", body: "Lorem ipsum...", author: "Charles V", id: 2},
-    {title: "Web dev top tips", body: "Lorem ipsum...", author: "Francis I", id: 3},
-  ]);
-    
+  const [posts, setPosts] = useState(null);
+  const [hasLoaded, setHasLoaded] = useState(false);
+  const [error, setError] = useState(null);
+
   const removePostHandler = (id)=>{
     setPosts(posts.filter(post => post.id !== id));
   }
 
   useEffect(()=>{
-    console.log("use effect ran");
+    fetch("http://localhost:8000/posts")
+      .then(res => {
+        if(!res.ok){
+          throw Error("Hi there!");
+        }
+        return res.json();        
+      })
+      .then(data => {
+        setTimeout(()=>{
+          setPosts(data);
+          setHasLoaded(true);
+          setError(null);
+        }, 1000);        
+      })
+      .catch(err => {
+        setError(err.message);
+        setHasLoaded(true);
+      });
   }, []);
 
   return (
     <div className="section-container">
-      { posts.map(post => <PostPreview 
+      {error && <div>{ error }</div>}
+      {!hasLoaded && <div>Loading... </div>}
+      { posts && posts.map(post => <PostPreview 
         post={post} 
         key={post.id} 
         removeHandler={removePostHandler} 
