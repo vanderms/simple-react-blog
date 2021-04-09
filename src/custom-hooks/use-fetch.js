@@ -1,7 +1,9 @@
 import {useState, useEffect} from 'react';
 
-function useFetch(url){
+function useFetch(id){
 
+  id = Number.parseInt(id);
+  const URL = 'assets/db.json'; 
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -10,16 +12,40 @@ function useFetch(url){
 
     const abortController = new AbortController();
 
+    function getDataFromLocalStorage(){
+      let posts = JSON.parse(localStorage.getItem('posts'));
+      
+      if(id){
+        let post = posts.filter(post => {         
+          return post.id === id;
+        })[0];                 
+        setData(post);             
+      } else {       
+        setData(posts);
+      }
+      setIsLoading(false);
+      setError(false);
+    }
+
     async function fetchData(){
       try {
-        const res = await fetch(url, { signal: abortController.signal });
+        const res = await fetch(URL, { signal: abortController.signal });
         
         if(!res.ok) {
           throw Error("Failed to connect to the server.");
         }
 
         const data = await res.json();
-        setData(data);
+        window.localStorage.setItem('posts', JSON.stringify(data.posts));                
+
+        if(id){
+          let post = data.posts.filter(post => {         
+            return post.id === id;
+          })[0];                 
+          setData(post);                  
+        } else {       
+          setData(data.posts);
+        }
         setIsLoading(false);
         setError(false);
 
@@ -32,9 +58,15 @@ function useFetch(url){
         }
       }
     }
-    fetchData();
+    
+    if(window.localStorage.getItem('posts') === null){
+      fetchData();      
+    } else {      
+      getDataFromLocalStorage();
+    }
+    
     return () => abortController.abort(); 
-  }, [url]);
+  }, [id]);  
 
   return { data, isLoading, error };
 }

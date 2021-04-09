@@ -12,21 +12,18 @@ function CreatePost(){
 
   function handleSubmit(e){
     e.preventDefault();
-    const post = { title, content, author };
+    const post = { title, body: content, author };
     
     setIsLoading(true);
-    
-    fetch('http://localhost:8000/posts', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(post)
-    })
-    .then(() => {
-      console.log('new post added');
-      setIsLoading(false);
-      history.push('/');
-    })
-    .catch(err => console.log(err));
+
+    let posts = window.localStorage.getItem('posts');
+    posts = JSON.parse(posts);
+    post.id = posts[posts.length - 1].id + 1; 
+    posts.push(post);
+    window.localStorage.setItem('posts', JSON.stringify(posts));
+    console.log('new post added');
+    setIsLoading(false);
+    history.push('/');   
   }
 
   return (
@@ -50,7 +47,7 @@ function CreatePost(){
               type="text"
               id='author'
               value={ author }
-              onChange={(e)=>setTitle(e.target.value)}
+              onChange={(e)=>setAuthor(e.target.value)}
               required
             />      
           </div>

@@ -1,7 +1,6 @@
-import classes from './app.module.css';
-import Navbar from '../navbar/Navbar';
+import Navbar from '../navbar/navbar';
 import Home from '../home/home';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import CreatePost from '../create-post/create-post';
 import BlogDetails from '../blog-details/blog-details';
 import NotFound from '../not-found/not-found';

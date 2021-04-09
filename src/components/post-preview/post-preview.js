@@ -6,7 +6,7 @@ function PostPreview({post}){
     <div className={classes.postPreview}>
       <Link to={`/posts/${post.id}`} >
         <h3 className={classes.title}>{post.title}</h3>      
-        <small>Escrito por: {post.author}</small>
+        <small>Autor: {post.author}</small>
         <p className={classes.content}> {post.body}</p>
       </Link>           
     </div>

@@ -25,3 +25,14 @@ footer {
 main {
   min-height: calc(100vh - 124px);
 }
+
+.remove-button {
+  cursor: pointer;
+  background-color: black;
+  color: #EEE;
+  padding: 8px 16px;
+  margin-top: 40px;
+  border-radius: 5px;
+  border: none;
+  float: right;
+}

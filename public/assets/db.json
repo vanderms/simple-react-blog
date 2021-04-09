@@ -1,0 +1,22 @@
+{
+  "posts": [
+    {
+      "title": "A arte de cologar bugs no software",
+      "body": "Se depurar é o processo de remoção de bugs do software, então programação deve ser o processo de colocação deles.",
+      "author": "Edsger Dijkstra",
+      "id": 1
+    },
+    {
+      "title": "Engenheiros de software contra o Universo",
+      "body": "Hoje a programação é uma corrida entre os engenheiros de software para tentar construir maiores e melhores programas à prova de idiotas, e o Universo tentando produzir maiores e melhores idiotas. Até agora, o Universo está ganhando.",
+      "author": "Rich Cook",
+      "id": 2
+    },
+    {
+      "title": "O peso de um programa",
+      "body": "Medir o progresso de um programa por linhas de código é como medir o processo de montagem de um avião pelo peso.",
+      "author": "Bill Gates",
+      "id": 3
+    }
+  ]
+}
