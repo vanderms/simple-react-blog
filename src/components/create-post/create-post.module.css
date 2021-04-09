@@ -53,9 +53,10 @@
   }
 
   .formFirstRow select, .formFirstRow input {
-    margin-left: 0px !important;    
+    margin-left: 0px !important;        
   }
 }
+
 
 .form label{
   font-size: 0.9em;

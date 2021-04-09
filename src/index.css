@@ -36,3 +36,8 @@ main {
   border: none;
   float: right;
 }
+
+
+#title, #author{
+  border: 1px solid black;
+}
