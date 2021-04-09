@@ -1,7 +1,7 @@
-import classes from './Home.module.css';
+import classes from './home.module.css';
 import { useState, useEffect } from 'react';
-import PostPreview from '../PostPreview/PostPreview';
-import useFetch from '../../CustomHooks/useFetch';
+import PostPreview from '../post-preview/post-preview';
+import useFetch from '../../custom-hooks/use-fetch';
 
 function Home(){
 
@@ -13,7 +13,7 @@ function Home(){
       { isLoading && <div>Loading... </div>}
       { data && data.map(post => <PostPreview 
         post={ post }
-        key={ post.id }      
+        key={ post.id } 
         />)
       } 
     </div>

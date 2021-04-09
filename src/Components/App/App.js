@@ -1,17 +1,18 @@
-import classes from './App.module.css';
-import Navbar from '../Navbar/Navbar';
-import Home from '../Home/Home';
+import classes from './app.module.css';
+import Navbar from '../navbar/Navbar';
+import Home from '../home/home';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import CreatePost from '../CreatePost/CreatePost';
-import BlogDetails from '../BlogDetails/BlogDetails';
-
+import CreatePost from '../create-post/create-post';
+import BlogDetails from '../blog-details/blog-details';
+import NotFound from '../not-found/not-found';
+import Footer from '../footer/footer';
 
 function App() {  
   return (
     <Router>
     <div className="App">
       <Navbar/>
-      <div className="content">
+      <main>
         <Switch>
           <Route exact path='/'>
             <Home/>
@@ -22,11 +23,14 @@ function App() {
           <Route path="/posts/:id">
             <BlogDetails/>
           </Route>
-        </Switch>
-      </div>
+          <Route path='*'>
+            <NotFound/>            
+          </Route>
+        </Switch>       
+      </main>
     </div>
-    </Router>
-   
+    <Footer/>
+    </Router>   
   );
 }
 

@@ -1,21 +1,36 @@
 import { useState } from 'react';
-import styles from './CreatePost.module.css';
+import styles from './create-post.module.css';
+import { useHistory } from 'react-router-dom';
 
 function CreatePost(){
 
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
-  const [author, setAuthor] = useState("John Doe");
+  const [author, setAuthor] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const history = useHistory();
 
   function handleSubmit(e){
     e.preventDefault();
-    const blog = { title, content, author };
-    console.log(blog);
+    const post = { title, content, author };
+    
+    setIsLoading(true);
+    
+    fetch('http://localhost:8000/posts', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(post)
+    })
+    .then(() => {
+      console.log('new post added');
+      setIsLoading(false);
+      history.push('/');
+    })
+    .catch(err => console.log(err));
   }
 
   return (
-    <div className="section-container">
-      <div className={styles.container}>
+    <div className="section-container">      
       <h2>Write a new post</h2>
       <form onSubmit={ handleSubmit } className={styles.form}>
         <div className={styles.formFirstRow}>
@@ -31,15 +46,13 @@ function CreatePost(){
           </div>
           <div>
             <label htmlFor='author'>Author: </label>
-            <select 
-              name="author" 
-              id="author"
-              value={author}
-              onChange ={(e) => setAuthor(e.target.value)}
-              >
-              <option value="John Doe">John Doe</option>
-              <option value="Mary Ann">Mary Ann</option>
-            </select>
+            <input 
+              type="text"
+              id='author'
+              value={ author }
+              onChange={(e)=>setTitle(e.target.value)}
+              required
+            />      
           </div>
         </div>
         <label htmlFor="content">Content:
@@ -52,9 +65,11 @@ function CreatePost(){
             required>
           </textarea>     
         </label>        
-        <button>Create Post</button>
-      </form>
-      </div>     
+        { isLoading ? 
+          <button disabled>...</button> :
+          <button>Publicar</button>
+        }        
+      </form>         
     </div>
   )
 }

@@ -8,12 +8,20 @@ h1, h2, h3, h4, h5, h6{
 }
 
 .section-container{
-  padding: 0% 8% 0% 12%;
-  margin-bottom: 60px;
+  padding: 0% 20%;
+  margin-top: 80px;
 }
 
 @media (max-width: 600px){
   .section-container{
-    padding: 0% 2% 0% 2%;    
+    padding: 0% 5% 0% 5%;    
   }
+}
+
+footer {
+  text-align: center;
+}
+
+main {
+  min-height: calc(100vh - 124px);
 }

@@ -1,5 +1,5 @@
 import { useParams } from "react-router";
-import useFetch from '../../CustomHooks/useFetch';
+import useFetch from '../../custom-hooks/use-fetch';
 
 
 
@@ -9,7 +9,7 @@ export default function BlogDetails(){
   const { data: post, error, isLoading } = useFetch('http://localhost:8000/posts/' + id);
   
   return (
-    <div className="blog-details">
+    <div className="blog-details section-container">
       { isLoading && <div>Loading...</div> }
       { error && <div>{ error }</div> }
       { post && (

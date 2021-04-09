@@ -1,0 +1,19 @@
+.postPreview {
+  margin: 60px 0px;  
+}
+
+.title{
+  font-size: 1.4em;
+}
+
+.postPreview a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.content {
+  max-height: 30px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
