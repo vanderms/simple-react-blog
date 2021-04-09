@@ -28,11 +28,11 @@ function CreatePost(){
 
   return (
     <div className="section-container">      
-      <h2>Write a new post</h2>
+      <h2>Escreva uma nova publicação</h2>
       <form onSubmit={ handleSubmit } className={styles.form}>
         <div className={styles.formFirstRow}>
           <div>
-            <label htmlFor='title'>Title: </label>   
+            <label htmlFor='title'>Título: </label>   
             <input 
               type="text"
               id='title'
@@ -42,7 +42,7 @@ function CreatePost(){
             />        
           </div>
           <div>
-            <label htmlFor='author'>Author: </label>
+            <label htmlFor='author'>Autor: </label>
             <input 
               type="text"
               id='author'
@@ -52,7 +52,7 @@ function CreatePost(){
             />      
           </div>
         </div>
-        <label htmlFor="content">Content:
+        <label htmlFor="content">Conteúdo:
           <textarea
             id="content" 
             cols="30" 
